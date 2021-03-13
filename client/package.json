@@ -9,7 +9,13 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "vue": "^2.6.11"
+    "leaflet": "^1.7.1",
+    "leaflet-geosearch": "^3.2.2",
+    "sass-loader": "^11.0.1",
+    "vue": "^2.6.11",
+    "vue-router": "^3.5.1",
+    "vue2-leaflet": "^2.6.0",
+    "vue2-leaflet-geosearch": "^1.0.6"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
