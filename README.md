@@ -16,14 +16,27 @@ the no. of reports registered in that area.
 
 ## Project setup
 
-##Install
+Install
+
+Client
 ```
+cd client
+npm install
+```
+Server
+```
+cd src
 npm install
 ```
 
-### Compiles and hot-reloads for development
+Run & Start
+Client
 ```
 npm run serve
+```
+Server
+```
+node index
 ```
 
 ### Compiles and minifies for production
