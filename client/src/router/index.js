@@ -14,6 +14,11 @@ const routes = [
     name: "LoginUser",
     component: () => import("../views/Login(User).vue"),
   },
+  {
+    path: "/loginorg",
+    name: "OrgUser",
+    component: () => import("../views/Login(OrgUser).vue"),
+  },
 
   {
     path: "/usertype",

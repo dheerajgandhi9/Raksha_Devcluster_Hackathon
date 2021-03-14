@@ -1,31 +1,20 @@
 <template>
-    <div class="create">
-      <h2>Create Account</h2>
-        <form class="form" @submit.prevent="create">
+    <div class="Login">
+      <h2>LOGIN</h2>
+        <form class="form" @submit.prevent="login">
             <label>
-            <span>Name:</span> <br>
-            <input type="text" required v-model="name"/>
-            </label>
-            <label>
-            <span>E-mail ID:</span> <br>
+            <span>NGO ID/Police St.ID</span> <br>
             <input type="email" required v-model="email"/>
             </label>
-            <label>
-            <span>Contact Number:</span> <br>
-            <input type="number" required v-modal="phno"/>
-            </label>
+            <br>
             <label>
             <span>Password:</span> <br>
             <input type="password" required v-modal="password"/>
             </label>
-            <label>
-            <span>Confirm Password:</span> <br>
-            <input type="password" required v-modal="password"/>
-            </label>
             <div class="group">
-              <button class="submit" type="submit" >Create Account</button>
-              <p class="question">Already a member?</p>
-              <router-link to="/signup" class="alink">Sign Up</router-link>
+              <button class="submit" type="submit" >Login</button>
+              <p class="question">Or</p>
+              <router-link to="/create" class="alink">Sign Up</router-link>
             </div>
           </form>
     </div>
@@ -33,11 +22,9 @@
 <script>
 
 export default {
-  name: 'LoginUser',
+  name: 'OrgUser',
   data(){
       return{
-        name:null,
-        phno:null,
         email:null,
         password:null
       }
@@ -45,7 +32,7 @@ export default {
 }
 </script>
 <style scoped>
-.create{
+.Login{
   height: 100vh;
   width: 100%;
   display: flex;
@@ -61,11 +48,11 @@ h2{
   font-size: 1.3rem;
   font-weight: 500;
   position: relative;
-  bottom: 1rem;
+  bottom: 2rem;
 }
 .form{
   text-align: start;
-  height: 70vh;
+  height: 40vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -74,7 +61,7 @@ h2{
   text-align: center;
 }
 label span, .submit{
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 500;
 }
 label input{
@@ -82,16 +69,16 @@ label input{
   border-radius: 7px;
   border: none;
   outline: none;
-  height: 1.3rem;
+  height: 1.5rem;
   width: 14rem;
 }
 .submit{
-  margin-top: 1rem;
+  margin-top: 2rem;
   border: none;
   border-radius: 7px;
   cursor: pointer;
-  width: 7.6rem;
-  padding: 0.3rem ;
+  width: 6.5rem;
+  padding: 0.3rem 0;
   background: #AFA1FF;
   font-weight: 500;
 }
