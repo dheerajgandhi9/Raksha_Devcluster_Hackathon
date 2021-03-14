@@ -20,13 +20,29 @@
 	</div>
 </template>
 <script>
+import axios from "axios";
 export default {
 	name: "LoginUser",
 	data() {
 		return {
-			email: null,
-			password: null,
+			user: {
+				emai: null,
+				password: null,
+			},
 		};
+	},
+	methods: {
+		login() {
+			axios
+				.post("http://localhost:5000/user/login", this.user)
+				.then((result) => {
+					localStorage.setItem("Usertoken", result.data.token);
+					this.$router.push("/");
+				})
+				.catch((error) => {
+					console.log(error.message);
+				});
+		},
 	},
 };
 </script>

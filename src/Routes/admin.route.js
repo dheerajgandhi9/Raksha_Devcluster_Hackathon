@@ -268,8 +268,9 @@ router.post('/add-complain',(req,res)=>{
    
 })
 
-router.get('/get-complain',(req,res)=>{
-    Authority.findById(req.body.id)
+router.get('/get-complain/:id',(req,res)=>{
+  console.log(req.params)
+    Authority.findOne({_id:req.params.id})
     .then(result=>{
       console.log(result)
       const data=result.complain

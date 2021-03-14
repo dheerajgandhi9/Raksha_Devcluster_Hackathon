@@ -6,14 +6,10 @@
 			<h2>OUR DUTY</h2>
 		</div>
 		<div class="btn">
-			<button class="sos">SOS</button>
+			<button class="sos" @click="sos">SOS</button>
 		</div>
 		<div class="map">
-			<Maping></Maping>
-		</div>
-
-		<div class="btn2">
-			<button class="locate">Locate Me</button>
+			<Maping v-on:btn-clicked="clicked($event)"></Maping>
 		</div>
 	</div>
 </template>
@@ -22,6 +18,20 @@ import Maping from "../components/map.vue";
 export default {
 	name: "Home",
 	components: { Maping },
+    data(){
+        return{
+            position:{}
+        }
+    },
+    methods:{
+        clicked(location){
+			this.position=location;
+			console.log(this.position);
+		},
+        sos(){
+            this.$router.push('/helpline')
+        }
+    }
 };
 </script>
 <style scoped>
@@ -62,6 +72,7 @@ h2 {
 	margin-bottom: 2rem;
 }
 .sos {
+	cursor: pointer;
 	font-size: 1.2rem;
 	padding: 1rem 2.5rem;
 	background: rgba(255, 126, 126);
