@@ -12,11 +12,11 @@
 			<div class="priority">
 				<label id="problem" for="priority">Priority</label>
 				<br />
-				<input type="radio" id="one" value="One" v-model="reportdata.picked" />
+				<input type="radio" id="one" value=1 v-model="reportdata.priority" />
 				<label class="radiolabel" for="one">Low</label>
-				<input type="radio" id="two" value="Two" v-model="reportdata.picked" />
+				<input type="radio" id="two" value=2 v-model="reportdata.priority" />
 				<label class="radiolabel" for="two">Medium</label>
-				<input type="radio" id="three" value="Three" v-model="reportdata.picked" />
+				<input type="radio" id="three" value=3 v-model="reportdata.priority" />
 				<label class="radiolabel" for="two">High</label>
 			</div>
 			<button type="submit"  class="submit" >Report</button>
@@ -25,6 +25,7 @@
 </template>
 <script>
 import Maping from "../components/map.vue";
+import axios from 'axios'
 export default {
 	name: "Report",
 	components: { Maping },
@@ -32,19 +33,30 @@ export default {
 		return{
 			reportdata:{
 				problem:'',
-				picked:'',
+				priority:'',
 				position:{},
+                id:''
 			}
 		}
 	},
 	methods:{
 		clicked(location){
-			this.position=location;
+			this.reportdata.position=location;
 		},
 	async onReport () { 
       try {
-        alert('Your report has been Filed') 
-        // this.studentform = null; 
+        //   this.reportdata.id=localStorage.getItem("userid")
+        this.reportdata.id="604e13588151aa100868070c"
+          console.log(this.reportdata.position)
+        // console.log(this.reportdata.position)
+          axios.put("http://localhost:5000/user/addComplain",this.reportdata)
+          .then(() =>{
+              alert('Your report has been Filed') 
+              this.$router.push("/")
+          })
+          .catch(err=>{
+              console.log(err)
+          })
       } catch (error) {
         alert(error)
       }

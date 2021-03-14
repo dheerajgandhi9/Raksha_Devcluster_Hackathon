@@ -297,7 +297,7 @@ router.post("/new-password", (req, res) => {
     });
 });
 router.get('/showReport',(req,res)=>{
-    User.find({report:{area:req.body.area}})
+    User.find()
     .then(result=>{
        return res.status(200).send(result)
     })

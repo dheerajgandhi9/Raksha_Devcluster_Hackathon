@@ -4,12 +4,12 @@
         <form class="form" @submit.prevent="login">
             <label>
             <span>E-mail ID:</span> <br>
-            <input type="email" required v-model="email"/>
+            <input type="email" required v-model="user.email"/>
             </label>
             <br>
             <label>
             <span>Password:</span> <br>
-            <input type="password" required v-modal="password"/>
+            <input type="password" required v-model="user.password"/>
             </label>
             <div class="group">
               <button class="submit" type="submit" >Login</button>
@@ -26,7 +26,7 @@ export default {
   data(){
       return{
         user:{
-        emai:null,
+        email:null,
         password:null
         }
       }
@@ -36,6 +36,7 @@ export default {
       axios.post("http://localhost:5000/user/login",this.user)
       .then(result=>{
         localStorage.setItem("Usertoken",result.data.token)
+        localStorage.setItem("Userid",result.data.id)
         this.$router.push('/')
       })
       .catch(error=>{
