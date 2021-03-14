@@ -1,4 +1,5 @@
 <template>
+<div>
   <l-map
     ref="map"
     @dblclick="onMapClick"
@@ -33,6 +34,8 @@
     >
     </l-marker>
   </l-map>
+  <button z-index="500" type="submit" @click="btnclicked">Submit</button>
+</div>
 </template>
 <script>
 import L from "leaflet";
@@ -40,7 +43,7 @@ import { LMap, LMarker, LTileLayer, LTooltip } from "vue2-leaflet";
 import { OpenStreetMapProvider } from "leaflet-geosearch";
 import LGeosearch from "vue2-leaflet-geosearch";
 import { icon } from "leaflet";
-import axios from 'axios'
+import axios from "axios";
 export default {
   components: {
     LMap,
@@ -51,7 +54,8 @@ export default {
   },
   props: {
     value: {
-      type: Object
+      type: Object,
+      required: true
     },
     defaultLocation: {
       type: Object,
@@ -71,26 +75,24 @@ export default {
       },
       userLocation: {},
       icon: icon({
-        iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
-        iconUrl: require("leaflet/dist/images/marker-icon.png"),
-        shadowUrl: require("leaflet/dist/images/marker-shadow.png")
+        iconUrl:"https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-yellow.png",
+        shadowUrl:"https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        shadowSize: [41, 41]
       }),
-      position: {},
+      position: {
+      },
       address: "",
       tileProvider: {
         attribution:
           '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
         url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       },
-      zoom: 10,
+      zoom: 17,
       dragging: false,
-      // markers: [
-      //   // L.latLng(47.412, 23.45),
-      //   // L.latLng(47.413220, 27.36),
-      //   // L.latLng(47.414, 68.34),
-      // ]
       marker:L.latLng(47.412, 23.45),
-      markers:[]
+      markers:[],
     };
   },
   mounted() {
@@ -128,7 +130,7 @@ export default {
   methods: {
     latLong: function(lat,long) { 
       return L.latLng(lat,long)
-      },
+    },
     async getAddress() {
       this.loading = true;
       let address = "Unresolved address";
@@ -154,6 +156,7 @@ export default {
     onSearch(value) {
       const loc = value.location;
       this.position = { lat: loc.y, lng: loc.x };
+      
     },
     async getUserPosition() {
       if (navigator.geolocation) {
@@ -176,30 +179,33 @@ export default {
         shadowSize: [41, 41]
         });
         return redIcon;
+    },
+    btnclicked(){
+      this.$emit('btn-clicked',this.position);
     }
   }
 };
 </script>
 <style>
-* {
-	padding: 0;
-	margin: 0;
-	box-sizing: border-box;
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
-#mapview {
-	position: relative;
-	width: 100%;
-	height: 100vh;
-	z-index: 100;
+#mapview{
+    position: relative;
+    width: 100% ;
+    height: 50rem;
+    z-index: 100;
 }
-#mapview .leaflet-control-geosearch form {
-	padding: 0 0;
+#mapview .leaflet-control-geosearch form{
+  padding: 0 0;
 }
-#mapview .leaflet-control-geosearch a.reset {
-	height: 25px;
-	line-height: 27px;
+#mapview .leaflet-control-geosearch a.reset{
+  height: 25px;
+  line-height: 27px;
 }
-#mapview .leaflet-control-geosearch a.leaflet-bar-part.leaflet-bar-part-single {
-	height: 25px;
+#mapview .leaflet-control-geosearch a.leaflet-bar-part.leaflet-bar-part-single{
+  height: 25px;
 }
 </style>

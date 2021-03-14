@@ -2,24 +2,24 @@
 	<div class="report">
 		<h1>Mark Suspicious</h1>
 		<div class="map">
-			<Maping></Maping>
+			<Maping v-on:btn-clicked="clicked($event)"></Maping>
 		</div>
 
-		<form>
+		<form  @submit.prevent="onReport">
 			<label id="problem">Problem</label> <br />
-			<textarea rows="8" cols="50" v-model="problem"></textarea>
+			<textarea rows="8" cols="50" v-model="reportdata.problem"></textarea>
 			<br />
 			<div class="priority">
 				<label id="problem" for="priority">Priority</label>
 				<br />
-				<input type="radio" id="one" value="One" v-model="picked" />
+				<input type="radio" id="one" value="One" v-model="reportdata.picked" />
 				<label class="radiolabel" for="one">Low</label>
-				<input type="radio" id="two" value="Two" v-model="picked" />
+				<input type="radio" id="two" value="Two" v-model="reportdata.picked" />
 				<label class="radiolabel" for="two">Medium</label>
-				<input type="radio" id="two" value="Two" v-model="picked" />
+				<input type="radio" id="three" value="Three" v-model="reportdata.picked" />
 				<label class="radiolabel" for="two">High</label>
 			</div>
-			<input type="submit" value="Report" />
+			<button type="submit"  class="submit" >Report</button>
 		</form>
 	</div>
 </template>
@@ -28,14 +28,38 @@ import Maping from "../components/map.vue";
 export default {
 	name: "Report",
 	components: { Maping },
-};
+	data(){
+		return{
+			reportdata:{
+				problem:'',
+				picked:'',
+				position:{},
+			}
+		}
+	},
+	methods:{
+		clicked(location){
+			this.position=location;
+		},
+	async onReport () { 
+      try {
+        alert('Your report has been Filed') 
+        // this.studentform = null; 
+      } catch (error) {
+        alert(error)
+      }
+	}
+	}
+}
 </script>
 
 <style scoped>
 .report {
 	height: 100vh;
-	color: white;
 	background: -webkit-linear-gradient(25rad, #000d3a, black);
+}
+h1,label{
+	color: white;
 }
 .report h1 {
 	font-family: "Poppins";
@@ -73,7 +97,7 @@ input[type="radio"] {
 .map {
 	margin: 0 0.5rem;
 }
-input[type="submit"] {
+button{
 	font-size: 1rem;
 	padding: 0.6rem 2.2rem;
 	background: #afa2ff;
