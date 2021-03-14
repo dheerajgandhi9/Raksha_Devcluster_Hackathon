@@ -13,7 +13,7 @@ It also provides additional information whether a particular area is safe or not
 the no. of reports registered in that area.
 
 
-
+Technology Used: Vue.js, Express.js, Node.js, Mongodb, 
 ## Project setup
 
 Install
@@ -30,6 +30,7 @@ npm install
 ```
 
 Run & Start
+
 Client
 ```
 npm run serve
