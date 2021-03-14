@@ -1,50 +1,50 @@
 <template>
-	<div class="Login">
-		<h1>Login</h1>
-		<form class="form" @submit.prevent="login">
-			<label>
-				<span>E-mail ID:</span> <br />
-				<input type="email" required v-model="email" />
-			</label>
-			<br />
-			<label>
-				<span>Password:</span> <br />
-				<input type="password" required v-modal="password" />
-			</label>
-			<div class="group">
-				<button class="submit" type="submit">Login</button>
-				<p class="question">Or</p>
-				<router-link to="/create" class="alink">Sign Up</router-link>
-			</div>
-		</form>
-	</div>
+    <div class="Login">
+      <h1>Login</h1>
+        <form class="form" @submit.prevent="login">
+            <label>
+            <span>E-mail ID:</span> <br>
+            <input type="email" required v-model="user.email"/>
+            </label>
+            <br>
+            <label>
+            <span>Password:</span> <br>
+            <input type="password" required v-model="user.password"/>
+            </label>
+            <div class="group">
+              <button class="submit" type="submit" >Login</button>
+              <p class="question">Or</p>
+              <router-link to="/create" class="alink">Sign Up</router-link>
+            </div>
+          </form>
+    </div>
 </template>
 <script>
 import axios from "axios";
 export default {
-	name: "LoginUser",
-	data() {
-		return {
-			user: {
-				emai: null,
-				password: null,
-			},
-		};
-	},
-	methods: {
-		login() {
-			axios
-				.post("http://localhost:5000/user/login", this.user)
-				.then((result) => {
-					localStorage.setItem("Usertoken", result.data.token);
-					this.$router.push("/");
-				})
-				.catch((error) => {
-					console.log(error.message);
-				});
-		},
-	},
-};
+  name: 'LoginUser',
+  data(){
+      return{
+        user:{
+        email:null,
+        password:null
+        }
+      }
+  },
+  methods:{
+    login(){
+      axios.post("http://localhost:5000/user/login",this.user)
+      .then(result=>{
+        localStorage.setItem("Usertoken",result.data.token)
+        localStorage.setItem("Userid",result.data.id)
+        this.$router.push('/')
+      })
+      .catch(error=>{
+        console.log(error.message)
+      })
+    }
+  }
+}
 </script>
 <style scoped>
 .Login {

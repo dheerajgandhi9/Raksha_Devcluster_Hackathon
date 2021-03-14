@@ -12,20 +12,20 @@
 			</label>
 			<label>
 				<span>Contact Number:</span> <br />
-				<input type="number" required v-modal="newuser.number" />
+				<input type="number" required v-model="newuser.number" />
 			</label>
 			<label>
 				<span>Password:</span> <br />
-				<input type="password" required v-modal="newuser.password" />
+				<input type="password" required v-model="newuser.password" />
 			</label>
 			<label>
 				<span>Confirm Password:</span> <br />
-				<input type="password" required v-modal="password" />
+				<input type="password" required v-model="newuser.password" />
 			</label>
 			<div class="group">
 				<button class="submit" type="submit">Create Account</button>
 				<p class="question">Already a member?</p>
-				<router-link to="/signup" class="alink">Sign Up</router-link>
+				<router-link to="/signup" class="alink">Signin</router-link>
 			</div>
 		</form>
 	</div>
@@ -46,10 +46,12 @@ export default {
 	},
 	methods: {
 		create() {
+			console.log(this.newuser);
 			axios
 				.post("http://localhost:5000/user/add", this.newuser)
 				.then((result) => {
 					localStorage.setItem("Usertoken", result.data.token);
+					localStorage.setItem("Userid", result.data.id);
 					this.$router.push("/");
 				})
 				.catch((error) => {

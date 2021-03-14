@@ -309,4 +309,13 @@ router.get("/showReport", (req, res) => {
 			res.status(401).send("Error: " + err.message);
 		});
 });
+router.get("/showReport", (req, res) => {
+	User.find()
+		.then((result) => {
+			return res.status(200).send(result);
+		})
+		.catch((err) => {
+			res.status(401).send("Error: " + err.message);
+		});
+});
 module.exports = router;
