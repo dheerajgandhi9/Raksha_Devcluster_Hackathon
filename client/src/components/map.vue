@@ -40,6 +40,7 @@ import { LMap, LMarker, LTileLayer, LTooltip } from "vue2-leaflet";
 import { OpenStreetMapProvider } from "leaflet-geosearch";
 import LGeosearch from "vue2-leaflet-geosearch";
 import { icon } from "leaflet";
+// import axios from "axios";
 export default {
 	components: {
 		LMap,
@@ -71,23 +72,30 @@ export default {
 			},
 			userLocation: {},
 			icon: icon({
-				iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
-				iconUrl: require("leaflet/dist/images/marker-icon.png"),
-				shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
+				iconUrl:
+					"https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-yellow.png",
+				shadowUrl:
+					"https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+				iconSize: [25, 41],
+				iconAnchor: [12, 41],
+				shadowSize: [41, 41],
 			}),
-			position: {},
+			position: {
+				lat: 15.474213,
+				lng: 73.849571,
+			},
 			address: "",
 			tileProvider: {
 				attribution:
 					'&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
 				url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
 			},
-			zoom: 10,
+			zoom: 17,
 			dragging: false,
 			markers: [
-				L.latLng(47.412, 23.45),
-				L.latLng(47.41322, 27.36),
-				L.latLng(47.414, 68.34),
+				// L.latLng(47.412, 23.45),
+				// L.latLng(47.413220, 27.36),
+				// L.latLng(47.414, 68.34),
 			],
 		};
 	},
@@ -167,6 +175,7 @@ export default {
 			});
 			return redIcon;
 		},
+		async storePosition() {},
 	},
 };
 </script>
@@ -178,8 +187,18 @@ export default {
 }
 #mapview {
 	position: relative;
+	width: 100%;
 	height: 40vh;
-
 	z-index: 100;
+}
+#mapview .leaflet-control-geosearch form {
+	padding: 0 0;
+}
+#mapview .leaflet-control-geosearch a.reset {
+	height: 25px;
+	line-height: 27px;
+}
+#mapview .leaflet-control-geosearch a.leaflet-bar-part.leaflet-bar-part-single {
+	height: 25px;
 }
 </style>
