@@ -13,14 +13,12 @@
             </label>
             <div class="group">
               <button class="submit" type="submit" >Login</button>
-              <p class="question">Or</p>
-              <router-link to="/create" class="alink">Sign Up</router-link>
             </div>
           </form>
     </div>
 </template>
-<script>  
-import axios from'axios'
+<script>
+import axios from "axios";
 export default {
   name: 'OrgUser',
   data(){
@@ -48,61 +46,61 @@ export default {
 }
 </script>
 <style scoped>
-.Login{
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column ;
-  background: -webkit-linear-gradient(25rad, #000D3A, black);
-  font-family:'Roboto', sans-serif;
-  text-align: center;
-  color: white;
+.Login {
+	height: 100vh;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	background: -webkit-linear-gradient(25rad, #000d3a, black);
+	font-family: "Poppins", sans-serif;
+	text-align: center;
+	color: white;
 }
-h2{
-  font-size: 1.3rem;
-  font-weight: 500;
-  position: relative;
-  bottom: 2rem;
+h1 {
+	margin-bottom: 3rem;
 }
-.form{
-  text-align: start;
-  height: 40vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.form {
+	text-align: start;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
-.group{
-  text-align: center;
+.group {
+	text-align: center;
 }
-label span, .submit{
-  font-size: 1rem;
-  font-weight: 500;
+span {
+	font-size: 1.2rem;
 }
-label input{
-  margin-top: 0.5rem;
-  border-radius: 7px;
-  border: none;
-  outline: none;
-  height: 1.5rem;
-  width: 14rem;
+label input {
+	margin-top: 0.5rem;
+	border-radius: 7px;
+	padding: 1rem;
+	border: none;
+	outline: none;
+	height: 1.5rem;
+	width: 14rem;
 }
-.submit{
-  margin-top: 2rem;
-  border: none;
-  border-radius: 7px;
-  cursor: pointer;
-  width: 6.5rem;
-  padding: 0.3rem 0;
-  background: #AFA1FF;
-  font-weight: 500;
+.submit {
+	margin-top: 2rem;
+	border: none;
+	border-radius: 7px;
+	cursor: pointer;
+	font-size: 1rem;
+	padding: 0.7rem 3rem;
+	background: #afa1ff;
+	margin-bottom: 1rem;
 }
-.alink{
-  color: white;
-  text-decoration: none;
-  font-family: 'Poppins';
-  padding: 0.3rem 0;
-  border-bottom: 1px solid white;
+.question {
+	margin-bottom: 1rem;
+}
+.alink {
+	color: white;
+	text-decoration: none;
+	font-family: "Poppins";
+	padding-bottom: 0.3rem;
+	border-bottom: 1px solid white;
 }
 </style>

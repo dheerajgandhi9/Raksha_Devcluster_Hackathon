@@ -1,6 +1,6 @@
 <template>
     <div class="create">
-      <h2>Create Account</h2>
+      <h1>Create Account</h1>
         <form class="form" @submit.prevent="create">
             <label>
             <span>Name:</span> <br>
@@ -25,7 +25,7 @@
             <div class="group">
               <button class="submit" type="submit" >Create Account</button>
               <p class="question">Already a member?</p>
-              <router-link to="/signup" class="alink">Sign Up</router-link>
+              <router-link to="/signup" class="alink">Signin</router-link>
             </div>
           </form>
     </div>
@@ -62,61 +62,62 @@ export default {
 }
 </script>
 <style scoped>
-.create{
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column ;
-  background: -webkit-linear-gradient(25rad, #000D3A, black);
-  font-family:'Roboto', sans-serif;
-  text-align: center;
-  color: white;
+.create {
+	height: 100vh;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	background: -webkit-linear-gradient(25rad, #000d3a, black);
+	font-family: "Roboto", sans-serif;
+	text-align: center;
+	color: white;
 }
-h2{
-  font-size: 1.3rem;
-  font-weight: 500;
-  position: relative;
-  bottom: 1rem;
+h1 {
+	margin-bottom: 3rem;
 }
-.form{
-  text-align: start;
-  height: 70vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.form {
+	text-align: start;
+	height: 70vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
-.group{
-  text-align: center;
+.group {
+	text-align: center;
 }
-label span, .submit{
-  font-size: 0.9rem;
-  font-weight: 500;
+span {
+	font-size: 1.2rem;
 }
-label input{
-  margin-top: 0.5rem;
-  border-radius: 7px;
-  border: none;
-  outline: none;
-  height: 1.3rem;
-  width: 14rem;
+label input {
+	margin-top: 0.5rem;
+	border-radius: 7px;
+	border: none;
+	padding: 1rem;
+	outline: none;
+	height: 1.3rem;
+	width: 14rem;
 }
-.submit{
-  margin-top: 1rem;
-  border: none;
-  border-radius: 7px;
-  cursor: pointer;
-  width: 7.6rem;
-  padding: 0.3rem ;
-  background: #AFA1FF;
-  font-weight: 500;
+.submit {
+	margin-top: 2rem;
+	border: none;
+	border-radius: 7px;
+	cursor: pointer;
+	font-size: 1rem;
+	padding: 0.7rem 3rem;
+	background: #afa1ff;
+	margin-bottom: 1rem;
 }
-.alink{
-  color: white;
-  text-decoration: none;
-  font-family: 'Poppins';
-  padding: 0.3rem 0;
-  border-bottom: 1px solid white;
+.alink {
+	color: white;
+	text-decoration: none;
+	font-family: "Poppins";
+	padding-bottom: 0.3rem;
+	border-bottom: 1px solid white;
+}
+.question {
+	margin-top: 1rem;
+	margin-bottom: 0.5rem;
 }
 </style>
