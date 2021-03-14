@@ -181,14 +181,25 @@ export default {
 };
 </script>
 <style>
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
 }
-#mapview{
-    position: relative;
-    height: 100vh;
-    z-index: 100;
+#mapview {
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	z-index: 100;
+}
+#mapview .leaflet-control-geosearch form {
+	padding: 0 0;
+}
+#mapview .leaflet-control-geosearch a.reset {
+	height: 25px;
+	line-height: 27px;
+}
+#mapview .leaflet-control-geosearch a.leaflet-bar-part.leaflet-bar-part-single {
+	height: 25px;
 }
 </style>
