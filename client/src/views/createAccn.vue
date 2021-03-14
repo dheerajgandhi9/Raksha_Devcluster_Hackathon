@@ -4,19 +4,19 @@
         <form class="form" @submit.prevent="create">
             <label>
             <span>Name:</span> <br>
-            <input type="text" required v-model="name"/>
+            <input type="text" required v-model="newuser.name"/>
             </label>
             <label>
             <span>E-mail ID:</span> <br>
-            <input type="email" required v-model="email"/>
+            <input type="email" required v-model="newuser.email"/>
             </label>
             <label>
             <span>Contact Number:</span> <br>
-            <input type="number" required v-modal="phno"/>
+            <input type="number" required v-modal="newuser.number"/>
             </label>
             <label>
             <span>Password:</span> <br>
-            <input type="password" required v-modal="password"/>
+            <input type="password" required v-modal="newuser.password"/>
             </label>
             <label>
             <span>Confirm Password:</span> <br>
@@ -36,12 +36,28 @@ export default {
   name: 'LoginUser',
   data(){
       return{
+        newuser:{
         name:null,
-        phno:null,
+        number:null,
         email:null,
         password:null
+        }
       }
   },
+  methods:{
+    create(){
+      axios.post("http://localhost:5000/user/add",this.newuser)
+      .then(result=>{
+        
+        localStorage.setItem("Usertoken",result.data.token)
+        this.$router.push('/')
+
+      })
+      .catch(error=>{
+        console.log(error)
+      })
+    }
+  }
 }
 </script>
 <style scoped>

@@ -4,12 +4,12 @@
         <form class="form" @submit.prevent="login">
             <label>
             <span>NGO ID/Police St.ID</span> <br>
-            <input type="email" required v-model="email"/>
+            <input type="email" required v-model="user.specialId"/>
             </label>
             <br>
             <label>
             <span>Password:</span> <br>
-            <input type="password" required v-modal="password"/>
+            <input type="password" required v-modal="user.password"/>
             </label>
             <div class="group">
               <button class="submit" type="submit" >Login</button>
@@ -19,16 +19,32 @@
           </form>
     </div>
 </template>
-<script>
-
+<script>  
+import axios from'axios'
 export default {
   name: 'OrgUser',
   data(){
       return{
-        email:null,
+        user:{
+        specialId:null,
         password:null
+        }
+
       }
   },
+  methods:{
+    login(){
+      axios.post("http://localhost:5000/admin/add",this.user)
+      .then(result=>{
+        localStorage.setItem("adminid",result.data._id)
+        localStorage.setItem("token",result.data.token)
+        this.$router.push('/Dashboard')
+      })
+      .catch(error=>{
+        console.log("Error: " + error)
+      })
+    }
+  }
 }
 </script>
 <style scoped>
