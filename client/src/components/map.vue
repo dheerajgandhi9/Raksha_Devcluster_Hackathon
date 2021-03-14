@@ -28,7 +28,7 @@
     <l-marker
     v-for="marker,index in markers"
     :key="index"
-    :lat-lng="marker"
+    :lat-lng="latLong(marker.lat,marker.long)"
     :icon="getIcon()"
     >
     </l-marker>
@@ -40,6 +40,7 @@ import { LMap, LMarker, LTileLayer, LTooltip } from "vue2-leaflet";
 import { OpenStreetMapProvider } from "leaflet-geosearch";
 import LGeosearch from "vue2-leaflet-geosearch";
 import { icon } from "leaflet";
+import axios from 'axios'
 export default {
   components: {
     LMap,
@@ -50,8 +51,7 @@ export default {
   },
   props: {
     value: {
-      type: Object,
-      required: true
+      type: Object
     },
     defaultLocation: {
       type: Object,
@@ -84,14 +84,23 @@ export default {
       },
       zoom: 10,
       dragging: false,
-      markers: [
-        L.latLng(47.412, 23.45),
-        L.latLng(47.413220, 27.36),
-        L.latLng(47.414, 68.34),
-      ]
+      // markers: [
+      //   // L.latLng(47.412, 23.45),
+      //   // L.latLng(47.413220, 27.36),
+      //   // L.latLng(47.414, 68.34),
+      // ]
+      marker:L.latLng(47.412, 23.45),
+      markers:[]
     };
   },
   mounted() {
+    const id="604cec0e3d26c82decacff8f"
+    axios.get("http://localhost:5000/admin/get-complain/"+id)
+    .then(res=>{
+      console.log(res.data)
+      this.markers=res.data
+    })
+
     this.getUserPosition();
     this.$refs.map.mapObject.on("geosearch/showlocation", this.onSearch);
   },
@@ -117,6 +126,9 @@ export default {
     }
   },
   methods: {
+    latLong: function(lat,long) { 
+      return L.latLng(lat,long)
+      },
     async getAddress() {
       this.loading = true;
       let address = "Unresolved address";
@@ -169,14 +181,25 @@ export default {
 };
 </script>
 <style>
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
 }
-#mapview{
-    position: relative;
-    height: 100vh;
-    z-index: 100;
+#mapview {
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	z-index: 100;
+}
+#mapview .leaflet-control-geosearch form {
+	padding: 0 0;
+}
+#mapview .leaflet-control-geosearch a.reset {
+	height: 25px;
+	line-height: 27px;
+}
+#mapview .leaflet-control-geosearch a.leaflet-bar-part.leaflet-bar-part-single {
+	height: 25px;
 }
 </style>
