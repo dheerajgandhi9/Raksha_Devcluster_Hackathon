@@ -15,6 +15,8 @@ the no. of reports registered in that area.
 
 
 ## Project setup
+
+##Install
 ```
 npm install
 ```
