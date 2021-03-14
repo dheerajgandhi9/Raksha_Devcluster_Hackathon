@@ -40,6 +40,7 @@ import { LMap, LMarker, LTileLayer, LTooltip } from "vue2-leaflet";
 import { OpenStreetMapProvider } from "leaflet-geosearch";
 import LGeosearch from "vue2-leaflet-geosearch";
 import { icon } from "leaflet";
+// import axios from "axios";
 export default {
   components: {
     LMap,
@@ -77,7 +78,10 @@ export default {
         iconAnchor: [12, 41],
         shadowSize: [41, 41]
       }),
-      position: {},
+      position: {
+        lat: 15.474213,
+        lng: 73.849571
+      },
       address: "",
       tileProvider: {
         attribution:
@@ -87,9 +91,9 @@ export default {
       zoom: 17,
       dragging: false,
       markers: [
-        L.latLng(47.412, 23.45),
-        L.latLng(47.413220, 27.36),
-        L.latLng(47.414, 68.34),
+        // L.latLng(47.412, 23.45),
+        // L.latLng(47.413220, 27.36),
+        // L.latLng(47.414, 68.34),
       ]
     };
   },
@@ -166,6 +170,9 @@ export default {
         shadowSize: [41, 41]
         });
         return redIcon;
+    },
+    async storePosition(){
+
     }
   }
 };
@@ -179,7 +186,7 @@ export default {
 #mapview{
     position: relative;
     width: 100% ;
-    height: 20rem;
+    height: 100rem;
     z-index: 100;
 }
 #mapview .leaflet-control-geosearch form{
