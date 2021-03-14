@@ -1,68 +1,76 @@
 <template>
 	<div class="report">
+		<Navbar></Navbar>
 		<h1>Mark Suspicious</h1>
 		<div class="map">
 			<Maping v-on:btn-clicked="clicked($event)"></Maping>
 		</div>
 
-		<form  @submit.prevent="onReport">
+		<form @submit.prevent="onReport">
 			<label id="problem">Problem</label> <br />
 			<textarea rows="8" cols="50" v-model="reportdata.problem"></textarea>
 			<br />
 			<div class="priority">
 				<label id="problem" for="priority">Priority</label>
 				<br />
-				<input type="radio" id="one" value=1 v-model="reportdata.priority" />
+				<input type="radio" id="one" value="1" v-model="reportdata.priority" />
 				<label class="radiolabel" for="one">Low</label>
-				<input type="radio" id="two" value=2 v-model="reportdata.priority" />
+				<input type="radio" id="two" value="2" v-model="reportdata.priority" />
 				<label class="radiolabel" for="two">Medium</label>
-				<input type="radio" id="three" value=3 v-model="reportdata.priority" />
+				<input
+					type="radio"
+					id="three"
+					value="3"
+					v-model="reportdata.priority"
+				/>
 				<label class="radiolabel" for="two">High</label>
 			</div>
-			<button type="submit"  class="submit" >Report</button>
+			<button type="submit" class="submit">Report</button>
 		</form>
 	</div>
 </template>
 <script>
 import Maping from "../components/map.vue";
-import axios from 'axios'
+import Navbar from "../components/navbar.vue";
+import axios from "axios";
 export default {
 	name: "Report",
-	components: { Maping },
-	data(){
-		return{
-			reportdata:{
-				problem:'',
-				priority:'',
-				position:{},
-                id:''
-			}
-		}
+	components: { Maping, Navbar },
+	data() {
+		return {
+			reportdata: {
+				problem: "",
+				priority: "",
+				position: {},
+				id: "",
+			},
+		};
 	},
-	methods:{
-		clicked(location){
-			this.reportdata.position=location;
+	methods: {
+		clicked(location) {
+			this.reportdata.position = location;
 		},
-	async onReport () { 
-      try {
-        //   this.reportdata.id=localStorage.getItem("userid")
-        this.reportdata.id="604e13588151aa100868070c"
-          console.log(this.reportdata.position)
-        // console.log(this.reportdata.position)
-          axios.put("http://localhost:5000/user/addComplain",this.reportdata)
-          .then(() =>{
-              alert('Your report has been Filed') 
-              this.$router.push("/")
-          })
-          .catch(err=>{
-              console.log(err)
-          })
-      } catch (error) {
-        alert(error)
-      }
-	}
-	}
-}
+		async onReport() {
+			try {
+				//   this.reportdata.id=localStorage.getItem("userid")
+				this.reportdata.id = "604e13588151aa100868070c";
+				console.log(this.reportdata.position);
+				// console.log(this.reportdata.position)
+				axios
+					.put("http://localhost:5000/user/addComplain", this.reportdata)
+					.then(() => {
+						alert("Your report has been Filed");
+						this.$router.push("/");
+					})
+					.catch((err) => {
+						console.log(err);
+					});
+			} catch (error) {
+				alert(error);
+			}
+		},
+	},
+};
 </script>
 
 <style scoped>
@@ -70,7 +78,8 @@ export default {
 	height: 100vh;
 	background: -webkit-linear-gradient(25rad, #000d3a, black);
 }
-h1,label{
+h1,
+label {
 	color: white;
 }
 .report h1 {
@@ -109,7 +118,7 @@ input[type="radio"] {
 .map {
 	margin: 0 0.5rem;
 }
-button{
+button {
 	font-size: 1rem;
 	padding: 0.6rem 2.2rem;
 	background: #afa2ff;

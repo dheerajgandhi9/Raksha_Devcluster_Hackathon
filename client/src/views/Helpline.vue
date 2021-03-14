@@ -1,32 +1,34 @@
 <template>
-	<div class="container">
+	<div class="main">
 		<Navbar></Navbar>
-		<div class="head">Help</div>
-		<div class="help-nos">
-			<h1>Helpline nos:</h1>
-			<ul>
-				<li>Women Helpline ( All India ) : 1091</li>
-				<li>Women Helpline Domestic Abuse : 181</li>
-				<li>Police : 100</li>
-				<li>National Emergency Number : 112</li>
-			</ul>
-		</div>
-		<div class="tips">
-			<h1>Safety Tips:</h1>
-			<div class="para">
-				Stay in a well-lit public area. Don’t go home or turn away from
-				crowds.If possible, travel on well lit, busy streets and avoid isolated
-				back roads and short cuts.If your are being followed, drive to the
-				nearest open business for help. Avoid shortcuts through parks, vacant
-				lots, and other deserted places.
+		<div class="container">
+			<div class="head">Help</div>
+			<div class="help-nos">
+				<h1>Helpline nos:</h1>
+				<ul>
+					<li>Women Helpline ( All India ) : 1091</li>
+					<li>Women Helpline Domestic Abuse : 181</li>
+					<li>Police : 100</li>
+					<li>National Emergency Number : 112</li>
+				</ul>
 			</div>
-			<div class="para">
-				Call the police. Find a well-lit public area and dial 1091 or 100 if you
-				feel you’re in danger.
-			</div>
-			<div class="para">
-				Carry protection. Whether pepper spray, a personal safety alarm, or a
-				lipstick taser, self-defense tools can help you feel more at ease.
+			<div class="tips">
+				<h1>Safety Tips:</h1>
+				<div class="para">
+					Stay in a well-lit public area. Don’t go home or turn away from
+					crowds.If possible, travel on well lit, busy streets and avoid
+					isolated back roads and short cuts.If your are being followed, drive
+					to the nearest open business for help. Avoid shortcuts through parks,
+					vacant lots, and other deserted places.
+				</div>
+				<div class="para">
+					Call the police. Find a well-lit public area and dial 1091 or 100 if
+					you feel you’re in danger.
+				</div>
+				<div class="para">
+					Carry protection. Whether pepper spray, a personal safety alarm, or a
+					lipstick taser, self-defense tools can help you feel more at ease.
+				</div>
 			</div>
 		</div>
 	</div>
@@ -35,23 +37,23 @@
 import Navbar from "../components/navbar.vue";
 export default {
 	name: "Helpline",
+	components: { Navbar },
 };
 </script>
 <style scoped>
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
 li {
 	list-style-type: none;
+}
+.main {
+	width: 100%;
+	background: -webkit-linear-gradient(25rad, #000d3a, black);
 }
 .container {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
 	align-items: center;
-	min-height: 100vh;
+	height: 100%;
 	width: 100%;
 	background: -webkit-linear-gradient(25rad, #000d3a, black);
 	color: white;

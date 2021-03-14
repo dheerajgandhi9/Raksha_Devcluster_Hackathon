@@ -1,5 +1,6 @@
 <template>
 	<div class="container">
+		<Navbar></Navbar>
 		<div class="head">Guide</div>
 		<div class="steps">
 			<ul>
@@ -29,8 +30,10 @@
 </template>
 
 <script>
+import Navbar from "../components/navbar.vue";
 export default {
 	name: "Workapp",
+	Components: { Navbar },
 };
 </script>
 

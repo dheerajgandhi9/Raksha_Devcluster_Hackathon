@@ -100,6 +100,7 @@ export default {
 </script>
 <style scoped>
 nav {
+	margin-bottom: 2rem;
 	z-index: 200;
 	display: flex;
 	justify-content: space-around;
@@ -137,7 +138,7 @@ ul.nav-links a {
 #burger div {
 	width: 30px;
 	height: 3px;
-	margin: 8px;
+	margin: 8px 0;
 	background-color: #fefefe;
 	transition: all 0.3s ease-in;
 }
