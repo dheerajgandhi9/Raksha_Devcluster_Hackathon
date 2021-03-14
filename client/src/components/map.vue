@@ -28,7 +28,7 @@
     <l-marker
     v-for="marker,index in markers"
     :key="index"
-    :lat-lng="marker"
+    :lat-lng="latLong(marker.lat,marker.long)"
     :icon="getIcon()"
     >
     </l-marker>
@@ -40,7 +40,7 @@ import { LMap, LMarker, LTileLayer, LTooltip } from "vue2-leaflet";
 import { OpenStreetMapProvider } from "leaflet-geosearch";
 import LGeosearch from "vue2-leaflet-geosearch";
 import { icon } from "leaflet";
-// import axios from "axios";
+import axios from 'axios'
 export default {
   components: {
     LMap,
@@ -51,8 +51,7 @@ export default {
   },
   props: {
     value: {
-      type: Object,
-      required: true
+      type: Object
     },
     defaultLocation: {
       type: Object,
@@ -72,32 +71,36 @@ export default {
       },
       userLocation: {},
       icon: icon({
-        iconUrl:"https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-yellow.png",
-        shadowUrl:"https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        shadowSize: [41, 41]
+        iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
+        iconUrl: require("leaflet/dist/images/marker-icon.png"),
+        shadowUrl: require("leaflet/dist/images/marker-shadow.png")
       }),
-      position: {
-        lat: 15.474213,
-        lng: 73.849571
-      },
+      position: {},
       address: "",
       tileProvider: {
         attribution:
           '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
         url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       },
-      zoom: 17,
+      zoom: 10,
       dragging: false,
-      markers: [
-        // L.latLng(47.412, 23.45),
-        // L.latLng(47.413220, 27.36),
-        // L.latLng(47.414, 68.34),
-      ]
+      // markers: [
+      //   // L.latLng(47.412, 23.45),
+      //   // L.latLng(47.413220, 27.36),
+      //   // L.latLng(47.414, 68.34),
+      // ]
+      marker:L.latLng(47.412, 23.45),
+      markers:[]
     };
   },
   mounted() {
+    const id="604cec0e3d26c82decacff8f"
+    axios.get("http://localhost:5000/admin/get-complain/"+id)
+    .then(res=>{
+      console.log(res.data)
+      this.markers=res.data
+    })
+
     this.getUserPosition();
     this.$refs.map.mapObject.on("geosearch/showlocation", this.onSearch);
   },
@@ -123,6 +126,9 @@ export default {
     }
   },
   methods: {
+    latLong: function(lat,long) { 
+      return L.latLng(lat,long)
+      },
     async getAddress() {
       this.loading = true;
       let address = "Unresolved address";
@@ -170,9 +176,6 @@ export default {
         shadowSize: [41, 41]
         });
         return redIcon;
-    },
-    async storePosition(){
-
     }
   }
 };
@@ -185,18 +188,7 @@ export default {
 }
 #mapview{
     position: relative;
-    width: 100% ;
-    height: 100rem;
+    height: 100vh;
     z-index: 100;
-}
-#mapview .leaflet-control-geosearch form{
-  padding: 0 0;
-}
-#mapview .leaflet-control-geosearch a.reset{
-  height: 25px;
-  line-height: 27px;
-}
-#mapview .leaflet-control-geosearch a.leaflet-bar-part.leaflet-bar-part-single{
-  height: 25px;
 }
 </style>
