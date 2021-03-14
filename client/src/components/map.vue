@@ -34,7 +34,7 @@
     >
     </l-marker>
   </l-map>
-  <button z-index="500" type="submit" @click="btnclicked">Submit</button>
+  <button z-index="500" type="submit" @click="btnclicked">Confirm Location?</button>
 </div>
 </template>
 <script>
@@ -82,8 +82,10 @@ export default {
         shadowSize: [41, 41]
       }),
       position: {
+        lat:15.2564305,
+        lng:73.9664153
       },
-      address: "",
+      address: "NH66, Navelim, Salcete,South Goa, 403761, India",
       tileProvider: {
         attribution:
           '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
@@ -156,7 +158,7 @@ export default {
     onSearch(value) {
       const loc = value.location;
       this.position = { lat: loc.y, lng: loc.x };
-      
+      console.log(this.position)
     },
     async getUserPosition() {
       if (navigator.geolocation) {
@@ -207,5 +209,18 @@ export default {
 }
 #mapview .leaflet-control-geosearch a.leaflet-bar-part.leaflet-bar-part-single{
   height: 25px;
+}
+button{
+  font-size: 1rem;
+	padding: 0.6rem 2.2rem;
+	background: red;
+	border-radius: 31px;
+	border: none;
+	font-weight: bold;
+	position: relative;
+	top: -1.2rem;
+	z-index: 200;
+  color: white;
+	letter-spacing: 2px;
 }
 </style>
