@@ -30,6 +30,11 @@ const routes = [
 		name: "CreateAccount",
 		component: () => import("../views/createAccn.vue"),
 	},
+	{
+		path: "/working",
+		name: "Workapp",
+		component: () => import("../views/Workapp.vue"),
+	},
 	// {
 	//   path: "/profile/:email",
 	//   name: "ViewProfile",

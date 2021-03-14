@@ -1,12 +1,15 @@
 <template>
 	<div class="home">
+		<Navbar></Navbar>
 		<img src="../assets/homeimg.svg" alt="" />
 		<div class="text">
 			<h1>YOUR SAFETY</h1>
 			<h2>OUR DUTY</h2>
 		</div>
 		<div class="btn">
-			<button class="sos" @click="sos">SOS</button>
+			<button class="sos" @click="sos">
+				SOS
+			</button>
 		</div>
 		<div class="map">
 			<Maping v-on:btn-clicked="clicked($event)"></Maping>
@@ -14,24 +17,28 @@
 	</div>
 </template>
 <script>
+import Navbar from "../components/navbar.vue";
 import Maping from "../components/map.vue";
 export default {
 	name: "Home",
-	components: { Maping },
-    data(){
-        return{
-            position:{}
-        }
-    },
-    methods:{
-        clicked(location){
-			this.position=location;
+	components: { Maping, Navbar },
+	data() {
+		return {
+			position: {},
+			contact: "",
+		};
+	},
+	methods: {
+		clicked(location) {
+			this.position = location;
 			console.log(this.position);
 		},
-        sos(){
-            this.$router.push('/helpline')
-        }
-    }
+		sos() {
+			this.contact = window.prompt("Enter contact no.");
+			console.log(this.contact);
+			this.$router.push("/helpline");
+		},
+	},
 };
 </script>
 <style scoped>
